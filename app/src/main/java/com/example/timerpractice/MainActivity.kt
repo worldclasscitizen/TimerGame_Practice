@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import org.w3c.dom.Text
 import java.lang.Math.abs
 import java.util.Random
 import java.util.Timer
@@ -14,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     var p_num = 2
     var k = 1 // index of player.
     val score_list = mutableListOf<Float>()
+    var isBlind = false
 
     fun start() {
 
@@ -22,6 +22,16 @@ class MainActivity : AppCompatActivity() {
         val btn_minus: TextView = findViewById(R.id.btn_minus)
         val btn_plus: TextView = findViewById(R.id.btn_plus)
         val btn_start: TextView = findViewById(R.id.btn_start)
+        val btn_blind: TextView = findViewById(R.id.btn_blind)
+
+        btn_blind.setOnClickListener {
+            isBlind = !isBlind
+            if(isBlind == true) {
+                btn_blind.text = "Blind Mode ON"
+            } else {
+                btn_blind.text = "Blind Mode OFF"
+            }
+        }
 
         tv_pnum.text = p_num.toString()
 
@@ -75,11 +85,16 @@ class MainActivity : AppCompatActivity() {
                 timerTask = kotlin.concurrent.timer(period = 10) {
                     sec++
                     runOnUiThread {
-                        tv_t.text = (sec.toFloat()/100).toString()
+                        if(isBlind == false) {
+                            tv_t.text = (sec.toFloat() / 100).toString()
+                        } else if(isBlind == true && stage == 2) {
+                            tv_t.text = "?.??"
+                        }
                     }
                 }
                 btn.text = "Stop"
             } else if(stage == 3) {
+                tv_t.text = (sec.toFloat() / 100).toString()
                 timerTask?.cancel()
                 val diff = abs(sec - num).toFloat() / 100
 
