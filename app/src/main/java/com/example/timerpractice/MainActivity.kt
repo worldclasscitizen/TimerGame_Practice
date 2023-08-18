@@ -1,9 +1,11 @@
 package com.example.timerpractice
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import java.lang.Math.abs
 import java.util.Random
 import java.util.Timer
@@ -67,6 +69,12 @@ class MainActivity : AppCompatActivity() {
         val tv_d: TextView = findViewById(R.id.tv_diff)
         val tv_players: TextView = findViewById(R.id.tv_players)
         val btn: Button = findViewById(R.id.btn_start)
+        val btn_i: Button = findViewById<Button?>(R.id.btn_i)
+        val bg_main: ConstraintLayout = findViewById(R.id.bg_main)
+        val color_list = mutableListOf<String>("#32E9321E", "#32E98E1E", "#32E9C41E", "#3287E91E", "#321EBDE9", "#321E79E9", "#32651EE9")
+
+        val color_sel = color_list.get((k-1)%7)
+        bg_main.setBackgroundColor(Color.parseColor(color_sel))
 
         // Set random time when the application is started.
         val random_box = Random()
@@ -75,6 +83,12 @@ class MainActivity : AppCompatActivity() {
         tv.text = (num.toFloat()/100).toString() // Show random number on 'tv(tv_random)'
         btn.text = "Start"
         tv_players.text = "Player $k"
+
+        btn_i.setOnClickListener {
+            k = 1
+            score_list.clear()
+            start()
+        }
 
         btn.setOnClickListener {
             stage++ // there is 3 kinds of stage
