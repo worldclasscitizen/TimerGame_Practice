@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import java.lang.Math.abs
 import java.util.Random
 import java.util.Timer
@@ -20,6 +23,12 @@ class MainActivity : AppCompatActivity() {
     fun start() {
 
         setContentView(R.layout.activity_start) // load XML file of Main Page
+
+        MobileAds.initialize(this) {}
+        val adview: AdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adview.loadAd(adRequest)
+
         val tv_pnum: TextView = findViewById(R.id.tv_pnum)
         val btn_minus: TextView = findViewById(R.id.btn_minus)
         val btn_plus: TextView = findViewById(R.id.btn_plus)
@@ -59,6 +68,11 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main) // load XML file
 
+        MobileAds.initialize(this) {}
+        val adview3: AdView = findViewById(R.id.adView3)
+        val adRequest = AdRequest.Builder().build()
+        adview3.loadAd(adRequest)
+
         var timerTask: Timer? = null // nullable
         var stage = 1
         var sec: Int = 0
@@ -85,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         tv_players.text = "Player $k"
 
         btn_i.setOnClickListener {
+            isBlind = false
             k = 1
             score_list.clear()
             start()
@@ -131,6 +146,11 @@ class MainActivity : AppCompatActivity() {
     fun end() {
         setContentView(R.layout.activity_end)
 
+        MobileAds.initialize(this) {}
+        val adview2: AdView = findViewById(R.id.adView2)
+        val adRequest = AdRequest.Builder().build()
+        adview2.loadAd(adRequest)
+
         val tv_worst: TextView = findViewById(R.id.tv_worst)
         val tv_wScore: TextView = findViewById(R.id.tv_wScore)
         val btn_restart: TextView = findViewById(R.id.btn_restart)
@@ -140,6 +160,7 @@ class MainActivity : AppCompatActivity() {
         tv_worst.text = "Player " + (index_last + 1).toString()
 
         btn_restart.setOnClickListener {
+            isBlind = false
             k = 1
             score_list.clear()
             start()
