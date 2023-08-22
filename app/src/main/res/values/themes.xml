@@ -17,7 +17,7 @@
         <item name="android:fontFamily">@font/bmeuljiro</item>
     </style>
 
-    <style name="customButtonFontStyle" parent="@android:style/Widget.DeviceDefault.Button">
+    <style name="customButtonFontStyle" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="android:fontFamily">@font/bmeuljiro</item>
     </style>
 

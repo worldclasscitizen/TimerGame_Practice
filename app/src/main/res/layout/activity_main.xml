@@ -83,11 +83,12 @@
 
     <Button
         android:id="@+id/btn_start"
+        style="@style/customButtonFontStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#407BE1"
         android:text="Start / Stop"
-        android:textSize="48sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -97,6 +98,7 @@
 
     <Button
         android:id="@+id/btn_i"
+        style="@style/customButtonFontStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#40AFE1"
